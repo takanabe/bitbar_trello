@@ -28,21 +28,25 @@ def extract_card_name(card)
   card.attributes[:name]
 end
 
+def extract_card_url(card)
+  card.attributes[:short_url]
+end
+
 def hide_content_into_menu_bar_from_here
   puts "---"
 end
+
 
 def main
   set_trello_config
 
   list = Trello.client.find(:list, ENV['LIST_ID'])
-  binding.pry
   puts "List: #{fetch_list_name(list)} | color=#00ffff"
   cards = fetch_cards_from_list(list)
 
   hide_content_into_menu_bar_from_here
   cards.each do |card|
-    puts "Card: #{extract_card_name(card)} | color=#ffffff"
+    puts "Card: #{extract_card_name(card)} |  href=#{extract_card_url(card)}"
   end
 end
 
