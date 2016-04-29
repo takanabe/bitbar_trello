@@ -1,24 +1,11 @@
 #!/usr/bin/env ruby
 
 require 'trello'
-require 'denv'
+require File.expand_path(File.dirname(File.realpath(__FILE__))) + '/load_dotenv'
 require 'pp'
 
 DOTENV_FILE_NAME = '.env'.freeze
 BITBAR_TRELLO_SIMLINK_NAME = 'bitbar_trello.rb'.freeze
-
-def load_dotenv_file(dotenv_file)
-  begin
-  denv_file_path = if File.symlink?(__FILE__)
-                     File.expand_path('..', File.realpath(__FILE__)) + "/#{dotenv_file}"
-                   else
-                     File.expand_path(File.dirname(__FILE__) + "/#{dotenv_file}")
-                   end
-  rescue
-    raise "Plase create `.env` file."
-  end
-  Denv.load(denv_file_path)
-end
 
 def set_trello_config
   Trello.configure do |config|
