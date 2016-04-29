@@ -15,12 +15,6 @@ def set_trello_config
   end
 end
 
-
-
-def fetch_doing_lists
-end
-
-
 def fetch_list_name(list)
   list.attributes[:name]
 end
@@ -35,7 +29,6 @@ def extract_card_name(card)
 end
 
 def main
-
   set_trello_config
 
   list = Trello.client.find(:list, ENV['LIST_ID'])

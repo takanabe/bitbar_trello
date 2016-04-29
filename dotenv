@@ -1,4 +1,10 @@
+#BitBar cofig
+BITBAR_PLUGIN_PATH=your_bitbar_plugin_path
+
+# Trello API config
 TRELLO_CONSUMER_KEY=your_consumer_key_without_quote
 TRELLO_CONSUMER_SECRET=your_consumer_secret_without_quote
 TRELLO_OAUTH_TOKEN=your_oauth_token_without_quote
 
+# Trello contents config
+LIST_ID=a_list_id_you_want_to_display
