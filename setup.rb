@@ -13,9 +13,15 @@ end
 
 def create_symlink
   unless trello_symlink_exists?
-    File.symlink(CURRENT_DIR_PATH + BITBAR_TRELLO_SIMLINK_NAME, ENV['BITBAR_PLUGIN_PATH'] + "/#{BITBAR_TRELLO_SIMLINK_NAME}")
-    puts "Create program on bitbar plugin directory!"
-    exit(0)
+    if ENV['BITBAR_PLUGIN_PATH']
+      File.symlink(CURRENT_DIR_PATH + BITBAR_TRELLO_SIMLINK_NAME, ENV['BITBAR_PLUGIN_PATH'] + "/#{BITBAR_TRELLO_SIMLINK_NAME}")
+      puts "Create program on bitbar plugin directory!"
+      exit(0)
+    else
+      puts "Please create `.env` file according to README.md"
+    end
+  else
+    puts "There is symlink already..."
   end
 end
 
