@@ -6,7 +6,7 @@ require 'pp'
 
 DOTENV_FILE_NAME = '.env'.freeze
 BITBAR_TRELLO_SIMLINK_NAME = 'bitbar_trello.rb'.freeze
-MAX_NUMBER_OF_TODOS = 5.freeze
+MAX_NUMBER_OF_TODOS = 10.freeze
 
 def set_trello_config
   Trello.configure do |config|
@@ -33,10 +33,13 @@ def extract_card_url(card)
   card.attributes[:short_url]
 end
 
+def extract_card_id(card)
+  card.attributes[:id]
+end
+
 def hide_stdout_into_menu_bar_from_here
   puts "---"
 end
-
 
 def alart_to_reduce_todos
   puts "Reduce your todos!! | color=red"
@@ -50,6 +53,10 @@ def exceed_card_limit?(cards)
   end
 end
 
+def move_to_another_list(card)
+  puts "- Move to Done | bash=ruby param1=#{File.expand_path(File.dirname(File.realpath(__FILE__))) + '/move_card_to_another_list.rb'} param2=#{extract_card_id(card)}"
+end
+
 def display_cards(list_id)
   set_trello_config
 
@@ -61,6 +68,7 @@ def display_cards(list_id)
   yield cards if block_given?
   cards.each do |card|
     puts "Card: #{extract_card_name(card)} |  href=#{extract_card_url(card)}"
+    move_to_another_list(card) if fetch_list_name(list) == 'Doing'
   end
 end
 
