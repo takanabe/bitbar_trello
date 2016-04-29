@@ -61,7 +61,7 @@ def display_cards(list_id)
   set_trello_config
 
   list = Trello.client.find(:list, list_id)
-  puts "List: #{fetch_list_name(list)} | color=#00ffff"
+  puts "Trello list: #{fetch_list_name(list)} | color=#00ffff"
   cards = fetch_cards_from_list(list)
 
   hide_stdout_into_menu_bar_from_here
