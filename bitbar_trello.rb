@@ -28,6 +28,10 @@ def extract_card_name(card)
   card.attributes[:name]
 end
 
+def hide_content_into_menu_bar_from_here
+  puts "---"
+end
+
 def main
   set_trello_config
 
