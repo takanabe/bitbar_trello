@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require 'trello'
 require 'denv'
 require 'pp'
@@ -20,7 +22,7 @@ def extract_card_name(card)
 end
 
 def main
-  Denv.load
+  Denv.load(File.expand_path(File.dirname(__FILE__) + '/.env'))
   Trello.configure do |config|
     config.consumer_key = ENV['TRELLO_CONSUMER_KEY']
     config.consumer_secret = ENV['TRELLO_CONSUMER_SECRET']
