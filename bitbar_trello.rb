@@ -32,11 +32,13 @@ def main
   set_trello_config
 
   list = Trello.client.find(:list, ENV['LIST_ID'])
-  puts 'List: ' + fetch_list_name(list)
+  binding.pry
+  puts "List: #{fetch_list_name(list)} | color=#00ffff"
   cards = fetch_cards_from_list(list)
 
+  hide_content_into_menu_bar_from_here
   cards.each do |card|
-    puts 'Card: ' +  extract_card_name(card)
+    puts "Card: #{extract_card_name(card)} | color=#ffffff"
   end
 end
 
