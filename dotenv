@@ -1,0 +1,4 @@
+TRELLO_CONSUMER_KEY=your_consumer_key_without_quote
+TRELLO_CONSUMER_SECRET=your_consumer_secret_without_quote
+TRELLO_OAUTH_TOKEN=your_oauth_token_without_quote
+
