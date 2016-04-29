@@ -4,13 +4,19 @@ require 'trello'
 require 'denv'
 require 'pp'
 
+DOTENV_FILE_NAME = '.env'.freeze
+BITBAR_TRELLO_SIMLINK_NAME = 'bitbar_trello.rb'.freeze
 
 def load_dotenv_file(dotenv_file)
+  begin
   denv_file_path = if File.symlink?(__FILE__)
                      File.expand_path('..', File.realpath(__FILE__)) + "/#{dotenv_file}"
                    else
-                     raise "Pleae execute setup script"
+                     File.expand_path(File.dirname(__FILE__) + "/#{dotenv_file}")
                    end
+  rescue
+    raise "Plase create `.env` file."
+  end
   Denv.load(denv_file_path)
 end
 
@@ -21,6 +27,8 @@ def set_trello_config
     config.oauth_token = ENV['TRELLO_OAUTH_TOKEN']
   end
 end
+
+
 
 def fetch_doing_lists
 end
@@ -40,8 +48,7 @@ def extract_card_name(card)
 end
 
 def main
-  dotenv_filename= '.env'
-  load_dotenv_file(dotenv_filename)
+
   set_trello_config
 
   list = Trello.client.find(:list, ENV['LIST_ID'])
@@ -53,4 +60,5 @@ def main
   end
 end
 
+load_dotenv_file(DOTENV_FILE_NAME)
 main
