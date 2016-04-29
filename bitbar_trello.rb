@@ -32,23 +32,24 @@ def extract_card_url(card)
   card.attributes[:short_url]
 end
 
-def hide_content_into_menu_bar_from_here
+def hide_stdout_into_menu_bar_from_here
   puts "---"
 end
 
 
-def main
+def display_cards(list_id)
   set_trello_config
 
-  list = Trello.client.find(:list, ENV['LIST_ID'])
+  list = Trello.client.find(:list, list_id)
   puts "List: #{fetch_list_name(list)} | color=#00ffff"
   cards = fetch_cards_from_list(list)
 
-  hide_content_into_menu_bar_from_here
+  hide_stdout_into_menu_bar_from_here
   cards.each do |card|
     puts "Card: #{extract_card_name(card)} |  href=#{extract_card_url(card)}"
   end
 end
 
 load_dotenv_file(DOTENV_FILE_NAME)
-main
+display_cards(ENV['TODO_LIST_ID'])
+display_cards(ENV['DONE_LIST_ID'])

@@ -7,4 +7,5 @@ TRELLO_CONSUMER_SECRET=your_consumer_secret_without_quote
 TRELLO_OAUTH_TOKEN=your_oauth_token_without_quote
 
 # Trello contents config
-LIST_ID=a_list_id_you_want_to_display
+TODO_LIST_ID=your_todo_list_id
+DONE_LIST_ID=your_done_list_id
