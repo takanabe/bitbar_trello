@@ -30,3 +30,13 @@ cp dotenv .env
 vim .env
 ```
 
+### How to get Trello Consumer Key and OAuth Token ?
+Procedures to get key and token are described on [Trello Developer page](https://trello.com/app-key).
+You can get your board and List IDs as follows:
+
+```
+# Get Board ID
+curl "https://trello.com/1/members/<username>/boards?key=<Key>&token=<Token>&fields=name"
+# Get List ID
+curl "https://trello.com/1/boards/<BoardID>/lists?key=<Key>&token=<Token>&fields=name"
+```
