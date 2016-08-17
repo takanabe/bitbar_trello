@@ -17,5 +17,13 @@ end
 load_dotenv_file(DOTENV_FILE_NAME)
 set_trello_config
 card_id = ARGV[0]
-Trello.client.put("/cards/#{card_id}/idList",
+
+if ARGV[1] == 'ToDo'
+  Trello.client.put("/cards/#{card_id}/idList",
+                  { value: ENV['DOING_LIST_ID']})
+elsif ARGV[1] == 'Doing'
+  Trello.client.put("/cards/#{card_id}/idList",
                   { value: ENV['DONE_LIST_ID']})
+else
+  raise "not match"
+end
